@@ -1,0 +1,35 @@
+@model IEnumerable<HoteleriaGes.Models.Hotel>
+@{
+    ViewData["Title"] = "Seleccionar Hotel";
+}
+<h2>Seleccionar Hotel para Administrar</h2>
+<form asp-action="Seleccionar" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Seleccionar</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Ciudad</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hotel in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="radio" name="id" value="@hotel.Id" required />
+                    </td>
+                    <td>@hotel.Nombre</td>
+                    <td>@hotel.Direccion</td>
+                    <td>@hotel.Ciudad</td>
+                    <td>@hotel.Rating</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+<div style="margin-top:30px;">
+    <a href="/Hoteles/Agregar" class="btn btn-success">Agregar Hotel desde API</a>
+</div>

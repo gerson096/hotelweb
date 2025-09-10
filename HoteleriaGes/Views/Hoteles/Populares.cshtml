@@ -1,0 +1,42 @@
+@model IEnumerable<HoteleriaGes.Models.Hotel>
+@{
+    ViewData["Title"] = "Hoteles Disponibles";
+}
+<h2>Hoteles Disponibles</h2>
+<form asp-action="Agregar" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Seleccionar</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Rating</th>
+                <th>Ciudad</th>
+                <th>Imagen</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hotel in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="radio" name="Id" value="@hotel.Id" />
+                    </td>
+                    <td>@hotel.Nombre</td>
+                    <td>@hotel.Direccion</td>
+                    <td>@hotel.Rating</td>
+                    <td>@hotel.Ciudad</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(hotel.ImagenUrl))
+                        {
+                            <img src="@hotel.ImagenUrl" alt="Imagen" width="100" />
+                        }
+                    </td>
+                    <td>@hotel.Descripcion</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Agregar Hotel Seleccionado</button>
+</form>
